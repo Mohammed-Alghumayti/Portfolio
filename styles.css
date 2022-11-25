@@ -205,9 +205,17 @@ width: 50px;
 }
 .header-content .right-header .name {
   font-size: 3rem;
+  
+  
 }
 .header-content .right-header .name span {
-  color: var(--color-secondary);
+  
+  background-image: url(https://media4.giphy.com/media/dB66K4Kywc8gPVh6A7/200w.webp?cid=ecf05e47ib0d5u214jd830y3joixnwr4av2bftlsc2kddmms&rid=200w.webp&ct=g);
+  background-size: cover;
+  color: transparent;
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  text-transform: uppercase;
 }
 .header-content .right-header p {
   margin: 1.5rem 0;
