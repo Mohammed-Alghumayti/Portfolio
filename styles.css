@@ -196,6 +196,9 @@ width: 50px;
 }
 .header-content .left-header .image img:hover {
   filter: grayscale(0);
+  width: 101%;
+  height: 101%;
+  transition: all 0.4s ease-out;
 }
 .header-content .right-header {
   display: flex;
