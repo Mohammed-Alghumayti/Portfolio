@@ -181,7 +181,7 @@ width: 50px;
 .header-content .left-header .image {
   border-radius: var(--br-sm-2);
   height: 90%;
-  width: 68%;
+  width: 70%;
   margin-left: 4rem;
   background: linear-gradient(-45deg, #34336d, #5c6f99, #46a082, #a4af42c4);
 
@@ -213,7 +213,6 @@ width: 50px;
   
 }
 .header-content .right-header .name span {
-  
   background-image: url(https://media.giphy.com/media/dB66K4Kywc8gPVh6A7/giphy.gif);
   background-size: cover;
   color: transparent;
@@ -1165,7 +1164,4 @@ width: 50px;
     line-height: 88px;
   }
 }
-
-
-
 
