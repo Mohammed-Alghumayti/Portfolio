@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;500&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -225,6 +227,89 @@ width: 50px;
   line-height: 2rem;
 }
 
+.print{
+  display: inline;
+  font-family: JetBrains Mono, monospace;
+  color: rgb(226, 208, 46);
+}
+
+#print2{
+  display: inline;
+  font-family: JetBrains Mono, monospace;
+  color: rgb(228, 109, 62);
+}
+
+/*string*/
+.roller{
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: monospace;
+  font-size: 3.5rem;
+  height: 4.225rem;
+  line-height: 4rem;
+  position: relative;
+  overflow: hidden; 
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 230px;
+  margin-top: -65px;
+  color: #68c9b4;
+}
+
+
+
+.roller #rolltext {
+  position: absolute;
+  top:0;
+  animation: slide 10s infinite;  
+}
+
+@keyframes slide {
+  0%{
+    top:0;
+  }
+  25%{
+    top: -4rem;    
+  }
+  50%{
+    top: -8rem;
+  }
+  72.5%{
+    top: -12.25rem;
+  }
+}
+
+@media screen and (max-width: 600px){
+.roller{
+  height: 2.6rem; 
+  line-height: 2.125rem;  
+  }
+  
+
+  
+  .roller #rolltext {  
+  animation: slide-mob 5s infinite;  
+}
+  
+  @keyframes slide-mob {
+  0%{
+    top:0;
+  }
+  25%{
+    top: -2.125rem;    
+  }
+  50%{
+    top: -4.25rem;
+  }
+  72.5%{
+    top: -6.375rem;
+  }
+}
+}
+/*end*/
+
 #visits{
   color: rgb(81, 192, 236);
 }
@@ -287,14 +372,23 @@ width: 50px;
 .about-container .left-about {
   padding-right: 5rem;
 }
-.about-container .left-about p {
+.about-container .left-about ul {
+  font-size: 1.2rem;
   line-height: 2rem;
   padding: 1rem;
   color: var(--color-grey-1);
+  font-weight: 500;
+}
+.about-container .left-about ul li {
+  color: #3f8fd1;
+  list-style: circle;
+  margin-bottom: 20px;
+  margin-left: 20px;
 }
 .about-container .left-about h4 {
-  font-size: 2rem;
+  font-size: 2.4rem;
   text-transform: uppercase;
+  margin-top: 20px;
 }
 
 .about-stats {
@@ -1164,4 +1258,7 @@ width: 50px;
     line-height: 88px;
   }
 }
+
+
+
 
