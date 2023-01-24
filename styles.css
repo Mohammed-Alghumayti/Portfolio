@@ -171,7 +171,7 @@ width: 50px;
 }
 .header-content .left-header .h-shape {
   transition: all 0.4s ease-in-out;
-  width: 120%;
+  width: 100%;
   height: 100%;
   background-color: var(--color-secondary);
   position: absolute;
@@ -184,7 +184,7 @@ width: 50px;
   border-radius: var(--br-sm-2);
   height: 90%;
   width: 70%;
-  margin-left: 4rem;
+  margin-left: 5rem;
   background: linear-gradient(-45deg, #34336d, #5c6f99, #46a082, #a4af42c4);
 
   transition: all 0.4s ease-in-out;
@@ -195,12 +195,12 @@ width: 50px;
   object-fit: cover;
   transition: all 0.4s ease-in-out;
   filter: grayscale(100%);
-  margin-left: 15px;
+  margin-left: 0px;
 }
 .header-content .left-header .image img:hover {
   filter: grayscale(0);
   width: 101%;
-  height: 101%;
+  height: 100%;
   transition: all 0.4s ease-out;
 }
 .header-content .right-header {
@@ -311,7 +311,7 @@ width: 50px;
 /*end*/
 
 #visits{
-  color: rgb(81, 192, 236);
+  color: var(--color-secondary);
 }
 
 #visit{
@@ -380,7 +380,7 @@ width: 50px;
   font-weight: 500;
 }
 .about-container .left-about ul li {
-  color: #3f8fd1;
+  color: var(--color-secondary);
   list-style: circle;
   margin-bottom: 20px;
   margin-left: 20px;
@@ -1153,22 +1153,18 @@ width: 50px;
 }
 
 
-
-
-
-
 /* button */
 .button-v,
 .button-v:after {
  top: 100px;
-  width: 150px;
+  width: 550px;
   height: 76px;
   line-height: 78px;
   font-size: 20px;
   font-family: 'Bebas Neue', sans-serif;
   background: linear-gradient(45deg, transparent -10%, #FF013C 50%);
   border: 0;
-  color: #fff;
+  color: rgb(255, 255, 255);
   letter-spacing: 3px;
   box-shadow: 9px 5px 10px #00E6F6;
   outline: transparent;
@@ -1250,13 +1246,38 @@ width: 50px;
   }
 }
 
-@media (min-width: 768px) {
-  .button-v,
-  .button-v:after {
-    width: 400px;
-    height: 86px;
-    line-height: 88px;
+@media screen and (max-width: 414px) {
+  .right-header{
+    margin-left: -30px;
   }
+
+  #text{
+    margin-left: 20px;
+    margin-right: -50px;
+  }
+
+  .print{
+    font-size: 23px;
+    
+  }
+
+  #my-name{
+    font-size: 23px;
+    
+  }
+
+  #print2{
+    font-size: 23px;;
+    
+  }
+  #rolltext{
+    font-size: 23px;;
+    margin-right: 120px;
+    animation: slide-mob 5s infinite;
+    margin-top: 5px;
+  }
+
+ 
 }
 
 
