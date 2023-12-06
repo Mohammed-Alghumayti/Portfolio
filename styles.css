@@ -431,10 +431,10 @@ width: 50px;
   width: 60%;
 }
 .about-stats .progress-bars .progress-bar .progress-con .progress .java {
-  width: 70%;
+  width: 90%;
 }
 .about-stats .progress-bars .progress-bar .progress-con .progress .asp {
-  width: 65%;
+  width: 85%;
 }
 .about-stats .progress-bars .progress-bar .progress-con .progress .python {
   width: 75%;
@@ -443,10 +443,10 @@ width: 50px;
   width: 90%;
 }
 .about-stats .progress-bars .progress-bar .progress-con .progress .css {
-  width: 87%;
+  width: 85%;
 }
 .about-stats .progress-bars .progress-bar .progress-con .progress .js {
-  width: 65%;
+  width: 75%;
 }
 
 .stat-title {
