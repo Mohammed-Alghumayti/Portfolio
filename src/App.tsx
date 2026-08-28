@@ -22,7 +22,7 @@ export default function App() {
         <Contact />
       </main>
       <footer className="border-t border-slate-200 dark:border-slate-800">
-        <div className="mx-auto max-w-5xl px-6 py-8">
+        <div className="mx-auto max-w-5xl px-5 py-8 sm:px-6">
           <p className="text-sm text-slate-500 dark:text-slate-500">
             © {new Date().getFullYear()} {profile.name}. All rights reserved.
           </p>

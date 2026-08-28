@@ -12,10 +12,10 @@ export default function About() {
 
           <dl className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
             {stats.map((stat) => (
-              <div key={stat.label}>
+              <div key={stat.label} className="group">
                 <dt className="sr-only">{stat.label}</dt>
                 <dd>
-                  <span className="block text-2xl font-semibold text-slate-900 dark:text-white">
+                  <span className="block text-2xl font-semibold text-slate-900 transition-colors group-hover:text-blue-700 dark:text-white dark:group-hover:text-sky-400">
                     {stat.value}
                   </span>
                   <span className="mt-1 block text-sm text-slate-500 dark:text-slate-400">
@@ -37,7 +37,7 @@ export default function About() {
                 {group.items.map((item) => (
                   <li
                     key={item}
-                    className="rounded-md border border-slate-200 bg-white px-2.5 py-1 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400"
+                    className="cursor-default rounded-md border border-slate-200 bg-white px-2.5 py-1 text-sm text-slate-600 transition duration-200 hover:-translate-y-0.5 hover:border-blue-300 hover:text-blue-700 hover:shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-sky-500/50 dark:hover:text-sky-400"
                   >
                     {item}
                   </li>

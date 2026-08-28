@@ -14,14 +14,14 @@ export default function Certifications() {
         {certifications.map((cert) => (
           <li
             key={cert.name}
-            className="flex gap-4 rounded-lg border border-slate-200 p-4 dark:border-slate-800"
+            className="group flex gap-4 rounded-lg border border-slate-200 p-4 transition duration-200 hover:-translate-y-0.5 hover:border-blue-300 hover:bg-slate-50 hover:shadow-md hover:shadow-slate-200/60 dark:border-slate-800 dark:hover:border-sky-500/50 dark:hover:bg-slate-900 dark:hover:shadow-black/40"
           >
             {cert.image ? (
               <img
                 src={asset(cert.image)}
                 alt=""
                 loading="lazy"
-                className="h-12 w-12 shrink-0 rounded object-contain"
+                className="h-12 w-12 shrink-0 rounded object-contain transition-transform duration-200 group-hover:scale-110"
               />
             ) : (
               <span
@@ -33,7 +33,9 @@ export default function Certifications() {
             )}
 
             <div className="min-w-0">
-              <h3 className="text-sm font-semibold text-slate-900 dark:text-white">{cert.name}</h3>
+              <h3 className="text-sm font-semibold text-slate-900 transition-colors group-hover:text-blue-700 dark:text-white dark:group-hover:text-sky-400">
+                {cert.name}
+              </h3>
               <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{cert.issuer}</p>
               <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-500">{cert.issued}</p>
 

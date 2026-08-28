@@ -36,11 +36,11 @@ export default function Nav() {
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/85 backdrop-blur dark:border-slate-800 dark:bg-slate-950/85">
       <nav
         aria-label="Primary"
-        className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-3"
+        className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-3 sm:px-6"
       >
         <a
           href="#top"
-          className="text-sm font-semibold tracking-tight text-slate-900 dark:text-white"
+          className="text-sm font-semibold tracking-tight text-slate-900 transition-colors hover:text-blue-700 dark:text-white dark:hover:text-sky-400"
         >
           Mohammed Alghumayti
         </a>
@@ -54,8 +54,8 @@ export default function Nav() {
                   aria-current={active === link.id ? 'true' : undefined}
                   className={
                     active === link.id
-                      ? 'rounded-md px-3 py-2 text-sm font-medium text-blue-700 dark:text-sky-400'
-                      : 'rounded-md px-3 py-2 text-sm text-slate-600 transition hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
+                      ? 'relative rounded-md px-3 py-2 text-sm font-medium text-blue-700 after:absolute after:inset-x-3 after:-bottom-px after:h-0.5 after:rounded-full after:bg-blue-700 dark:text-sky-400 dark:after:bg-sky-400'
+                      : 'relative rounded-md px-3 py-2 text-sm text-slate-600 transition-colors after:absolute after:inset-x-3 after:-bottom-px after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-slate-400 after:transition-transform after:duration-200 hover:text-slate-900 hover:after:scale-x-100 dark:text-slate-400 dark:hover:text-white'
                   }
                 >
                   {link.label}
@@ -92,14 +92,14 @@ export default function Nav() {
       {open ? (
         <ul
           id="mobile-menu"
-          className="border-t border-slate-200 px-6 pb-4 md:hidden dark:border-slate-800"
+          className="border-t border-slate-200 px-5 pb-3 md:hidden dark:border-slate-800"
         >
           {links.map((link) => (
             <li key={link.id}>
               <a
                 href={`#${link.id}`}
                 onClick={() => setOpen(false)}
-                className="block py-2.5 text-sm text-slate-600 dark:text-slate-400"
+                className="block py-3 text-sm text-slate-600 transition-colors hover:text-blue-700 dark:text-slate-400 dark:hover:text-sky-400"
               >
                 {link.label}
               </a>

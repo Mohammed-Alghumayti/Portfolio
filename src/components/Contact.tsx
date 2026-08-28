@@ -3,7 +3,10 @@ import { GitHubIcon, LinkedInIcon, LocationIcon, MailIcon, PhoneIcon } from './I
 import Section from './Section'
 
 const itemClass =
-  'flex items-center gap-3 text-sm text-slate-600 transition hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
+  'group inline-flex items-center gap-3 rounded-md py-1 text-sm text-slate-600 transition-colors hover:text-blue-700 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none dark:text-slate-400 dark:hover:text-sky-400'
+
+const iconClass =
+  'h-4 w-4 shrink-0 text-slate-400 transition-colors group-hover:text-blue-700 dark:group-hover:text-sky-400'
 
 export default function Contact() {
   return (
@@ -16,13 +19,13 @@ export default function Contact() {
         <ul className="space-y-4">
           <li>
             <a href={`mailto:${profile.email}`} className={itemClass}>
-              <MailIcon className="h-4 w-4 shrink-0 text-slate-400" />
+              <MailIcon className={iconClass} />
               {profile.email}
             </a>
           </li>
           <li>
             <a href={`tel:${profile.phone.replace(/\s/g, '')}`} className={itemClass}>
-              <PhoneIcon className="h-4 w-4 shrink-0 text-slate-400" />
+              <PhoneIcon className={iconClass} />
               {profile.phone}
             </a>
           </li>
@@ -40,13 +43,13 @@ export default function Contact() {
               rel="noopener noreferrer"
               className={itemClass}
             >
-              <LinkedInIcon className="h-4 w-4 shrink-0 text-slate-400" />
+              <LinkedInIcon className={iconClass} />
               linkedin.com/in/mohammedalghumayti
             </a>
           </li>
           <li>
             <a href={profile.github} target="_blank" rel="noopener noreferrer" className={itemClass}>
-              <GitHubIcon className="h-4 w-4 shrink-0 text-slate-400" />
+              <GitHubIcon className={iconClass} />
               github.com/Mohammed-Alghumayti
             </a>
           </li>
@@ -58,7 +61,7 @@ export default function Contact() {
 
       <a
         href={`mailto:${profile.email}`}
-        className="mt-10 inline-flex items-center gap-2 rounded-md bg-blue-700 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-blue-800 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:outline-none dark:bg-sky-500 dark:hover:bg-sky-400 dark:focus-visible:ring-offset-slate-950"
+        className="mt-10 inline-flex items-center gap-2 rounded-md bg-blue-700 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:outline-none dark:bg-sky-500 dark:hover:bg-sky-400 dark:focus-visible:ring-offset-slate-950"
       >
         <MailIcon className="h-4 w-4" />
         Get in touch

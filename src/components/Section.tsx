@@ -18,7 +18,7 @@ export default function Section({ id, title, intro, children, muted }: SectionPr
           : 'border-t border-slate-200 dark:border-slate-800'
       }
     >
-      <div className="mx-auto max-w-5xl px-6 py-20 sm:py-24">
+      <div className="mx-auto max-w-5xl px-5 py-14 sm:px-6 sm:py-24">
         <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl dark:text-white">
           {title}
         </h2>
@@ -27,7 +27,7 @@ export default function Section({ id, title, intro, children, muted }: SectionPr
             {intro}
           </p>
         ) : null}
-        <div className="mt-10">{children}</div>
+        <div className="mt-8 sm:mt-10">{children}</div>
       </div>
     </section>
   )
