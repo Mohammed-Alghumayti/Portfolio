@@ -8,8 +8,8 @@ export default function Hero() {
     <div id="top" className="mx-auto max-w-5xl px-5 pt-10 pb-14 sm:px-6 sm:pt-24 sm:pb-24">
       <div className="grid items-center gap-8 sm:gap-12 md:grid-cols-[1fr_auto]">
         <div>
-          <p className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700 dark:bg-sky-500/10 dark:text-sky-400">
-            <span className="h-1.5 w-1.5 rounded-full bg-blue-600 dark:bg-sky-400" />
+          <p className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 font-mono text-xs font-medium tracking-wide text-blue-700 dark:border-sky-500/30 dark:bg-sky-500/10 dark:text-sky-400">
+            <span className="status-dot h-1.5 w-1.5 rounded-full bg-blue-600 dark:bg-sky-400" />
             Open to opportunities
           </p>
 
@@ -21,7 +21,7 @@ export default function Hero() {
             {profile.role}
           </p>
 
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-600 dark:text-slate-400">
+          <p className="mt-4 max-w-xl font-mono text-sm leading-relaxed text-slate-600 dark:text-slate-400">
             {profile.headline}
           </p>
 
@@ -73,6 +73,7 @@ export default function Hero() {
         </div>
 
         <div className="order-first md:order-last">
+          <div className="scanline relative mx-auto h-44 w-44 overflow-hidden rounded-full ring-1 ring-slate-200 ring-offset-4 ring-offset-white transition duration-300 hover:ring-blue-400 sm:h-64 sm:w-64 dark:ring-slate-800 dark:ring-offset-slate-950 dark:hover:ring-sky-500/60">
           <picture>
             <source srcSet={asset(`${profile.portrait}.webp`)} type="image/webp" />
             <img
@@ -81,9 +82,10 @@ export default function Hero() {
               width={1200}
               height={1840}
               fetchPriority="high"
-              className="mx-auto h-44 w-44 rounded-full border border-slate-200 bg-slate-100 object-cover object-top shadow-sm transition duration-300 hover:scale-[1.03] hover:shadow-lg sm:h-64 sm:w-64 dark:border-slate-800 dark:bg-slate-900"
+              className="h-full w-full bg-slate-100 object-cover object-top transition duration-500 hover:scale-105 dark:bg-slate-900"
             />
           </picture>
+          </div>
         </div>
       </div>
     </div>

@@ -5,6 +5,8 @@
 @theme {
   --font-sans:
     'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:
+    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 html {
@@ -20,10 +22,132 @@ body {
   @apply bg-slate-950 text-slate-300;
 }
 
-/* Respect users who prefer reduced motion. */
+/* ---------------------------------------------------------------------------
+   Pointer glow
+   A large radial light that follows the cursor. Sits behind all content and
+   never intercepts clicks. Mounted by CursorGlow, which only activates it on
+   fine pointers with motion enabled.
+--------------------------------------------------------------------------- */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 34rem;
+  height: 34rem;
+  margin-top: -17rem;
+  margin-left: -17rem;
+  border-radius: 9999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease-out;
+  background: radial-gradient(
+    circle closest-side,
+    rgb(37 99 235 / 0.09),
+    rgb(37 99 235 / 0.04) 45%,
+    transparent 100%
+  );
+}
+
+.dark .cursor-glow {
+  background: radial-gradient(
+    circle closest-side,
+    rgb(56 189 248 / 0.16),
+    rgb(14 165 233 / 0.06) 45%,
+    transparent 100%
+  );
+}
+
+/* ---------------------------------------------------------------------------
+   Cyber grid backdrop
+   A faint technical grid behind the page, faded out toward the bottom so it
+   reads as texture rather than as a pattern competing with the content.
+--------------------------------------------------------------------------- */
+.cyber-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgb(15 23 42 / 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(15 23 42 / 0.055) 1px, transparent 1px);
+  background-size: 3.5rem 3.5rem;
+  mask-image: radial-gradient(ellipse 100% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+.dark .cyber-grid {
+  background-image:
+    linear-gradient(to right, rgb(56 189 248 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(56 189 248 / 0.07) 1px, transparent 1px);
+}
+
+/* Content sits above the grid and glow. */
+.site-layer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------------------------------------------------------------------------
+   Terminal-style section marker, e.g. "// Experience"
+--------------------------------------------------------------------------- */
+.section-marker {
+  @apply font-mono text-blue-700 dark:text-sky-400;
+}
+
+/* Status dot that pulses like a live monitoring indicator. */
+@keyframes status-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgb(56 189 248 / 0.55);
+  }
+  50% {
+    opacity: 0.75;
+    box-shadow: 0 0 0 5px rgb(56 189 248 / 0);
+  }
+}
+
+.status-dot {
+  animation: status-pulse 2.4s ease-in-out infinite;
+}
+
+/* Scanline sweep used on the portrait frame. */
+@keyframes scanline {
+  0% {
+    transform: translateY(-110%);
+  }
+  100% {
+    transform: translateY(310%);
+  }
+}
+
+.scanline::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  height: 28%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgb(56 189 248 / 0.14),
+    transparent
+  );
+  animation: scanline 5s linear infinite;
+  pointer-events: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .status-dot,
+  .scanline::after {
+    animation: none;
+  }
+
+  .scanline::after {
+    display: none;
   }
 
   *,

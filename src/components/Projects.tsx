@@ -39,7 +39,7 @@ export default function Projects() {
                 {project.tags.map((tag) => (
                   <li
                     key={tag}
-                    className="rounded-md bg-slate-100 px-2 py-0.5 text-xs text-slate-600 transition-colors hover:bg-blue-100 hover:text-blue-800 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-sky-500/15 dark:hover:text-sky-300"
+                    className="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-xs text-slate-600 transition-colors hover:bg-blue-100 hover:text-blue-800 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-sky-500/15 dark:hover:text-sky-300"
                   >
                     {tag}
                   </li>

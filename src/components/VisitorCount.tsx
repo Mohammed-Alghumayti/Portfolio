@@ -13,7 +13,9 @@ const COUNTER_NAMESPACE = 'mohammed-alghumayti'
 const COUNTER_KEY = 'portfolio-views'
 
 const JSON_ENDPOINT = `https://api.counterapi.dev/v2/${COUNTER_NAMESPACE}/${COUNTER_KEY}/up`
-const BADGE_ENDPOINT = `https://hits.sh/mohammed-alghumayti.github.io/Portfolio.svg?style=flat-square&label=visits&color=1d4ed8&labelColor=64748b`
+const BADGE_ENDPOINT =
+  'https://hits.sh/mohammed-alghumayti.github.io/Portfolio.svg' +
+  '?style=flat-square&label=visits&color=0ea5e9&labelColor=1e293b'
 
 type State =
   | { status: 'loading' }

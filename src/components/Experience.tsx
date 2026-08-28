@@ -24,13 +24,13 @@ export default function Experience() {
               <h3 className="text-base font-semibold text-slate-900 transition-colors group-hover:text-blue-700 dark:text-white dark:group-hover:text-sky-400">
                 {job.role}
               </h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400">{job.period}</p>
+              <p className="font-mono text-xs text-slate-500 dark:text-slate-400">{job.period}</p>
             </div>
 
             <p className="mt-1 text-sm font-medium text-blue-700 dark:text-sky-400">{job.company}</p>
 
             {job.location ? (
-              <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-500">{job.location}</p>
+              <p className="mt-0.5 font-mono text-xs text-slate-500 dark:text-slate-500">{job.location}</p>
             ) : null}
 
             <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
@@ -42,7 +42,7 @@ export default function Experience() {
                 {job.skills.map((skill) => (
                   <li
                     key={skill}
-                    className="rounded-md bg-slate-100 px-2 py-0.5 text-xs text-slate-600 transition-colors hover:bg-blue-100 hover:text-blue-800 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-sky-500/15 dark:hover:text-sky-300"
+                    className="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-xs text-slate-600 transition-colors hover:bg-blue-100 hover:text-blue-800 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-sky-500/15 dark:hover:text-sky-300"
                   >
                     {skill}
                   </li>

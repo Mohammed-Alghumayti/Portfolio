@@ -14,12 +14,13 @@ export default function Section({ id, title, intro, children, muted }: SectionPr
       id={id}
       className={
         muted
-          ? 'border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40'
+          ? 'border-t border-slate-200 bg-slate-50/70 dark:border-slate-800 dark:bg-slate-900/30'
           : 'border-t border-slate-200 dark:border-slate-800'
       }
     >
       <div className="mx-auto max-w-5xl px-5 py-14 sm:px-6 sm:py-24">
         <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl dark:text-white">
+          <span className="section-marker mr-2 text-xl sm:text-2xl">//</span>
           {title}
         </h2>
         {intro ? (
