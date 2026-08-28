@@ -140,6 +140,7 @@ section {
 }
 
 .theme-btn {
+  z-index: 10;
   top: 5%;
   right: 3%;
   width: 70px;
@@ -230,11 +231,12 @@ section {
 }
 
 .header-content .right-header .name span {
-  background-image: url(https://media.giphy.com/media/dB66K4Kywc8gPVh6A7/giphy.gif);
+  background-image: linear-gradient(90deg, var(--color-secondary), #68c9b4);
   background-size: cover;
   color: transparent;
   -moz-background-clip: text;
   -webkit-background-clip: text;
+  background-clip: text;
   text-transform: uppercase;
 }
 
@@ -269,8 +271,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 230px;
-  margin-top: -65px;
+  margin-top: 2rem;
   color: #68c9b4;
 }
 
@@ -333,12 +334,22 @@ section {
 
 /*end*/
 
-#visits {
-  color: var(--color-secondary);
+.visitor-badge {
+  margin: 0.5rem 0 0;
 }
 
-#visit {
-  font-family: monospace;
+.visitor-badge img {
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.copyright {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-grey-5);
+  color: var(--color-grey-3);
+  font-size: 0.85rem;
 }
 
 /*About*/
@@ -929,36 +940,6 @@ section {
 }
 
 /**/
-.main-title-sec {
-  text-align: center;
-  margin-top: 400px;
-}
-
-.main-title-sec h2 {
-  position: relative;
-  text-transform: uppercase;
-  font-size: 4rem;
-  font-weight: 700;
-}
-
-.main-title-sec h2 span {
-  color: #f01313;
-  margin-top: -380px;
-}
-
-.main-title-sec h2 .bg-text {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  color: var(--color-grey-5);
-  transition: all 0.4s ease-in-out;
-  z-index: -1;
-  transform: translate(-50%, -50%);
-  font-weight: 800;
-  font-size: 6.3rem;
-}
-
-/**/
 
 .about-container .left-about p {
   padding-left: 0;
@@ -1255,151 +1236,6 @@ section {
     font-size: 4rem;
   }
 
-}
-
-/*secret */
-
-/* i */
-
-.controls .controll {
-  padding: 1rem;
-  cursor: pointer;
-  background-color: var(--color-primary);
-  width: 60px;
-  height: 60px;
-  border-radius: 40%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0.7rem 0;
-  box-shadow: var(--box-shadow-1);
-}
-
-.controls .controll i {
-  font-size: 1.2rem;
-  color: var(--color-primary);
-  pointer-events: none;
-}
-
-.controls .controll:hover {
-  transition: all 0.3s ease-in;
-  width: 50px;
-}
-
-.xx {
-  color: var(--color-primary);
-  font-size: 15px;
-  margin-top: 10px;
-  margin-right: 0px;
-}
-
-.xx:hover {
-  color: white;
-  transition: 0.4s ease-in-out;
-}
-
-
-/* button */
-.button-v,
-.button-v:after {
-  top: 100px;
-  width: 550px;
-  height: 76px;
-  line-height: 78px;
-  font-size: 20px;
-  font-family: 'Bebas Neue', sans-serif;
-  background: linear-gradient(45deg, transparent -10%, #FF013C 50%);
-  border: 0;
-  color: rgb(255, 255, 255);
-  letter-spacing: 3px;
-  box-shadow: 9px 5px 10px #00E6F6;
-  outline: transparent;
-  position: relative;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.button-v:after {
-  --slice-0: inset(50% 50% 50% 50%);
-  --slice-1: inset(80% -6px 0 0);
-  --slice-2: inset(50% -6px 30% 0);
-  --slice-3: inset(10% -6px 85% 0);
-  --slice-4: inset(40% -6px 43% 0);
-  --slice-5: inset(80% -6px 5% 0);
-
-  content: 'ALTERNATE TEXT';
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);
-  text-shadow: -3px -3px 0px #F8F005, 3px 3px 0px #00E6F6;
-  clip-path: var(--slice-0);
-}
-
-.button-v:hover:after {
-  animation: 1s glitch;
-  animation-timing-function: steps(2, end);
-}
-
-@keyframes glitch {
-  0% {
-    clip-path: var(--slice-1);
-    transform: translate(-20px, -10px);
-  }
-
-  10% {
-    clip-path: var(--slice-3);
-    transform: translate(10px, 10px);
-  }
-
-  20% {
-    clip-path: var(--slice-1);
-    transform: translate(-10px, 10px);
-  }
-
-  30% {
-    clip-path: var(--slice-3);
-    transform: translate(0px, 5px);
-  }
-
-  40% {
-    clip-path: var(--slice-2);
-    transform: translate(-5px, 0px);
-  }
-
-  50% {
-    clip-path: var(--slice-3);
-    transform: translate(5px, 0px);
-  }
-
-  60% {
-    clip-path: var(--slice-4);
-    transform: translate(5px, 10px);
-  }
-
-  70% {
-    clip-path: var(--slice-2);
-    transform: translate(-10px, 10px);
-  }
-
-  80% {
-    clip-path: var(--slice-5);
-    transform: translate(20px, -10px);
-  }
-
-  90% {
-    clip-path: var(--slice-1);
-    transform: translate(-10px, 0px);
-  }
-
-  100% {
-    clip-path: var(--slice-1);
-    transform: translate(0);
-  }
 }
 
 @media (min-width: 360px) and (max-width: 780px) {
