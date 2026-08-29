@@ -2,18 +2,22 @@ import { useEffect, useState } from 'react'
 import { GOATCOUNTER_COUNT_URL } from '../lib/analytics'
 
 /**
- * Unique-visitor counter.
+ * Visitor counter.
  *
- * The counter is incremented at most once per browser. A marker in
- * localStorage records that this browser has already been counted, so
- * reloading or navigating back never inflates the total. Returning visitors
- * only ever read the count, never increment it.
+ * GoatCounter is the preferred source: it deduplicates visitors server-side, so
+ * the figure can simply be read and a reload can never inflate it. Displaying
+ * that figure requires "Allow adding visitor counts to your website" to be
+ * enabled in the GoatCounter site settings; without it the endpoint returns 403.
  *
- * Two transports are used because neither is reliable alone: a JSON request,
- * which can render the figure in the site's own typography but needs CORS, and
- * an <img> badge, which is not subject to CORS but can only increment — it has
- * no read-only mode. The badge is therefore only ever rendered for a browser
- * that has not been counted yet.
+ * If GoatCounter cannot be read for any reason the simple counter is used
+ * instead, so a misconfiguration degrades to a working counter rather than to
+ * an empty space. That counter increments at most once per browser: a marker in
+ * localStorage records that this browser has been counted, and a returning
+ * browser only ever reads.
+ *
+ * The badge image is the last resort because it is not subject to CORS, but
+ * requesting it *is* the increment — it has no read-only mode — so it is only
+ * ever rendered for a browser that has not been counted yet.
  */
 const COUNTER_WORKSPACE = 'mohammed-alghumayti'
 const COUNTER_NAME = 'portfolio-views'
@@ -49,18 +53,19 @@ function writeVisitor(visitor: Visitor) {
   }
 }
 
-/** Pulls the number out of the counter payload, whose shape varies by version. */
+/** Pulls the number out of a counter payload, whose shape varies by service. */
 function extractCount(payload: unknown): number | null {
-  const data = payload as Record<string, Record<string, unknown> | number> | null
-  const candidates = [
-    (data?.data as Record<string, unknown>)?.up_count,
-    (data?.data as Record<string, unknown>)?.value,
-    (data?.data as Record<string, unknown>)?.count,
-    data?.count,
-    data?.value,
-  ]
-  const found = candidates.find((c) => typeof c === 'number')
-  return typeof found === 'number' ? found : null
+  const root = payload as Record<string, unknown> | null
+  const data = root?.data as Record<string, unknown> | undefined
+  for (const candidate of [data?.up_count, data?.value, data?.count, root?.count, root?.value]) {
+    if (typeof candidate === 'number') return candidate
+    // GoatCounter returns the figure as a formatted string, e.g. "1,234".
+    if (typeof candidate === 'string') {
+      const digits = candidate.replace(/[^0-9]/g, '')
+      if (digits) return Number(digits)
+    }
+  }
+  return null
 }
 
 type State =
@@ -75,53 +80,53 @@ export default function VisitorCount() {
   useEffect(() => {
     const controller = new AbortController()
 
-    // GoatCounter deduplicates visitors server-side, so when it is configured
-    // the count is simply read — no localStorage bookkeeping is involved and a
-    // reload can never inflate the total.
-    if (GOATCOUNTER_COUNT_URL) {
-      fetch(GOATCOUNTER_COUNT_URL, { signal: controller.signal })
+    const get = (url: string) =>
+      fetch(url, { signal: controller.signal })
         .then((response) => (response.ok ? response.json() : Promise.reject(response.status)))
         .then((payload) => {
-          // GoatCounter returns the figure as a formatted string, e.g. "1,234".
-          const digits = String(payload?.count ?? '').replace(/[^0-9]/g, '')
-          if (!digits) throw new Error('no count in payload')
-          setState({ status: 'count', value: Number(digits) })
+          const value = extractCount(payload)
+          if (value === null) throw new Error('no count in payload')
+          return value
+        })
+
+    /** The simple counter, used when GoatCounter is unavailable. */
+    const showFallbackCounter = () => {
+      const visitor = readVisitor()
+      const isReturning = visitor?.counted === true
+
+      get(isReturning ? READ_URL : INCREMENT_URL)
+        .then((value) => {
+          setState({ status: 'count', value })
+          writeVisitor({ counted: true, value })
         })
         .catch((error) => {
-          if (error?.name !== 'AbortError') setState({ status: 'hidden' })
-        })
+          if (error?.name === 'AbortError') return
 
-      return () => controller.abort()
+          if (isReturning) {
+            // Never fall back to the badge here: requesting it would increment
+            // the counter for a browser that has already been counted.
+            setState(
+              typeof visitor?.value === 'number'
+                ? { status: 'count', value: visitor.value }
+                : { status: 'hidden' },
+            )
+            return
+          }
+
+          setState({ status: 'badge' })
+        })
     }
 
-    const visitor = readVisitor()
-    const isReturning = visitor?.counted === true
-
-    // A returning browser reads the total; only a new one increments it.
-    fetch(isReturning ? READ_URL : INCREMENT_URL, { signal: controller.signal })
-      .then((response) => (response.ok ? response.json() : Promise.reject(response.status)))
-      .then((payload) => {
-        const value = extractCount(payload)
-        if (value === null) throw new Error('no count in payload')
-        setState({ status: 'count', value })
-        writeVisitor({ counted: true, value })
-      })
-      .catch((error) => {
-        if (error?.name === 'AbortError') return
-
-        if (isReturning) {
-          // Never fall back to the badge here: requesting it would increment
-          // the counter for a browser that has already been counted.
-          if (typeof visitor?.value === 'number') {
-            setState({ status: 'count', value: visitor.value })
-          } else {
-            setState({ status: 'hidden' })
-          }
-          return
-        }
-
-        setState({ status: 'badge' })
-      })
+    if (GOATCOUNTER_COUNT_URL) {
+      get(GOATCOUNTER_COUNT_URL)
+        .then((value) => setState({ status: 'count', value }))
+        .catch((error) => {
+          if (error?.name === 'AbortError') return
+          showFallbackCounter()
+        })
+    } else {
+      showFallbackCounter()
+    }
 
     return () => controller.abort()
   }, [])
