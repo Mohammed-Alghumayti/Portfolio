@@ -26,5 +26,11 @@ export function goatcounterUrl(path: string): string | null {
  */
 export const GOATCOUNTER_COUNT_URL = goatcounterUrl('/counter/TOTAL.json')
 
+/**
+ * Same total as a PNG. Used when the JSON endpoint cannot be read cross-origin,
+ * since an image request is not subject to CORS.
+ */
+export const GOATCOUNTER_COUNT_IMAGE = goatcounterUrl('/counter/TOTAL.png')
+
 /** Endpoint the tracking script reports page views to. */
 export const GOATCOUNTER_COUNT_ENDPOINT = goatcounterUrl('/count')
