@@ -10,7 +10,7 @@ export default function About() {
             {profile.summary}
           </p>
 
-          <dl className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
+          <dl className="mt-10 flex flex-wrap gap-x-12 gap-y-6">
             {stats.map((stat) => (
               <div key={stat.label} className="group">
                 <dt className="sr-only">{stat.label}</dt>
