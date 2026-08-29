@@ -1,9 +1,14 @@
 name: Deploy to GitHub Pages
 
+# Manual only. Nothing reaches the live site on a push — a deploy has to be
+# triggered deliberately, either from the Actions tab or via the API.
 on:
-  push:
-    branches: [master]
   workflow_dispatch:
+    inputs:
+      ref:
+        description: Branch or commit to build and publish
+        required: false
+        default: test
 
 permissions:
   contents: read
@@ -20,6 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || 'test' }}
 
       - uses: actions/setup-node@v4
         with:
