@@ -1,7 +1,41 @@
+import { useState } from 'react'
 import { certifications } from '../data/profile'
 import { asset } from '../lib/asset'
 import { ExternalLinkIcon } from './Icons'
 import Section from './Section'
+
+const badgeClass = 'h-12 w-12 shrink-0 rounded'
+
+/**
+ * Shows a certification's badge image, falling back to the issuer's initials if
+ * no image is set or if the file fails to load. The fallback means a
+ * certification whose artwork has not been added yet still renders cleanly
+ * rather than showing a broken-image icon.
+ */
+function CertificationBadge({ image, issuer }: { image?: string; issuer: string }) {
+  const [failed, setFailed] = useState(false)
+
+  if (image && !failed) {
+    return (
+      <img
+        src={asset(image)}
+        alt=""
+        loading="lazy"
+        onError={() => setFailed(true)}
+        className={`${badgeClass} object-contain transition-transform duration-200 group-hover:scale-110`}
+      />
+    )
+  }
+
+  return (
+    <span
+      aria-hidden="true"
+      className={`${badgeClass} flex items-center justify-center border border-slate-200 bg-slate-100 font-mono text-sm font-semibold text-slate-500 transition-colors group-hover:border-blue-300 group-hover:text-blue-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400 dark:group-hover:border-sky-500/50 dark:group-hover:text-sky-400`}
+    >
+      {issuer.slice(0, 2).toUpperCase()}
+    </span>
+  )
+}
 
 export default function Certifications() {
   return (
@@ -16,21 +50,7 @@ export default function Certifications() {
             key={cert.name}
             className="group flex gap-4 rounded-lg border border-slate-200 p-4 transition duration-200 hover:-translate-y-0.5 hover:border-blue-300 hover:bg-slate-50 hover:shadow-md hover:shadow-slate-200/60 dark:border-slate-800 dark:hover:border-sky-500/50 dark:hover:bg-slate-900 dark:hover:shadow-black/40"
           >
-            {cert.image ? (
-              <img
-                src={asset(cert.image)}
-                alt=""
-                loading="lazy"
-                className="h-12 w-12 shrink-0 rounded object-contain transition-transform duration-200 group-hover:scale-110"
-              />
-            ) : (
-              <span
-                aria-hidden="true"
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded border border-slate-200 bg-slate-100 font-mono text-sm font-semibold text-slate-500 transition-colors group-hover:border-blue-300 group-hover:text-blue-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400 dark:group-hover:border-sky-500/50 dark:group-hover:text-sky-400"
-              >
-                {cert.issuer.slice(0, 2).toUpperCase()}
-              </span>
-            )}
+            <CertificationBadge image={cert.image} issuer={cert.issuer} />
 
             <div className="min-w-0">
               <h3 className="text-sm font-semibold text-slate-900 transition-colors group-hover:text-blue-700 dark:text-white dark:group-hover:text-sky-400">

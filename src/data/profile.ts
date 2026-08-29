@@ -188,12 +188,14 @@ export const certifications: Certification[] = [
     name: 'Web Traffic Protection Associate',
     issuer: 'OPSWAT Academy',
     issued: 'Issued Aug 2026',
+    image: 'img/cert-opswat-owpa.png',
     credential: 'Credential ID Ky1nDBPoBg',
   },
   {
     name: 'Cybersecurity Fundamentals Associate',
     issuer: 'OPSWAT Academy',
     issued: 'Issued Aug 2026',
+    image: 'img/cert-opswat-ocfa.png',
     credential: 'Credential ID 01AbnEikjg',
   },
   {
@@ -210,6 +212,7 @@ export const certifications: Certification[] = [
     name: 'McKinsey Forward Program',
     issuer: 'McKinsey & Company',
     issued: 'Issued Oct 2023',
+    image: 'img/cert-mckinsey-forward.png',
   },
   {
     name: 'Developing Websites Using PHP Laravel',
