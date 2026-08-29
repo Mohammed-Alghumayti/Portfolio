@@ -1,4 +1,5 @@
 import About from './components/About'
+import Analytics from './components/Analytics'
 import Certifications from './components/Certifications'
 import Contact from './components/Contact'
 import CursorGlow from './components/CursorGlow'
@@ -12,6 +13,7 @@ import { profile } from './data/profile'
 export default function App() {
   return (
     <>
+      <Analytics />
       <div className="cyber-grid" aria-hidden="true" />
       <CursorGlow />
 

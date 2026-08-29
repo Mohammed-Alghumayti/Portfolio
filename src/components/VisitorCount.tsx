@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { GOATCOUNTER_COUNT_URL } from '../lib/analytics'
 
 /**
  * Unique-visitor counter.
@@ -73,6 +74,26 @@ export default function VisitorCount() {
 
   useEffect(() => {
     const controller = new AbortController()
+
+    // GoatCounter deduplicates visitors server-side, so when it is configured
+    // the count is simply read — no localStorage bookkeeping is involved and a
+    // reload can never inflate the total.
+    if (GOATCOUNTER_COUNT_URL) {
+      fetch(GOATCOUNTER_COUNT_URL, { signal: controller.signal })
+        .then((response) => (response.ok ? response.json() : Promise.reject(response.status)))
+        .then((payload) => {
+          // GoatCounter returns the figure as a formatted string, e.g. "1,234".
+          const digits = String(payload?.count ?? '').replace(/[^0-9]/g, '')
+          if (!digits) throw new Error('no count in payload')
+          setState({ status: 'count', value: Number(digits) })
+        })
+        .catch((error) => {
+          if (error?.name !== 'AbortError') setState({ status: 'hidden' })
+        })
+
+      return () => controller.abort()
+    }
+
     const visitor = readVisitor()
     const isReturning = visitor?.counted === true
 
