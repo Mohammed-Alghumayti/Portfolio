@@ -21,10 +21,9 @@ export const profile = {
 } as const
 
 export const stats = [
-  { value: '4+', label: 'Years of experience' },
+  { value: '3+', label: 'Years of experience' },
   { value: '6', label: 'Professional roles' },
   { value: '17', label: 'Certifications' },
-  { value: '4.39', label: 'University GPA' },
 ] as const
 
 export type Experience = {
