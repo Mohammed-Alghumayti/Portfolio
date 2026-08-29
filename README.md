@@ -24,6 +24,17 @@ the build runs automatically, so no compiled output is committed here.
 Repository settings → **Pages → Build and deployment → Source** must be set to
 **GitHub Actions**.
 
+## Analytics
+
+Visitor numbers come from [GoatCounter](https://www.goatcounter.com), which
+counts unique visitors server-side. The site code is set in
+[`src/lib/analytics.ts`](src/lib/analytics.ts); clearing it disables tracking
+and falls back to a simple counter.
+
+Statistics are at <https://moahmmed.goatcounter.com>. Displaying the total on
+the page needs "Allow adding visitor counts to your website" enabled in the
+GoatCounter site settings.
+
 ## Local development
 
 ```bash

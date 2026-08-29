@@ -9,7 +9,7 @@
  * https://CODE.goatcounter.com. While it is empty, no tracking script is loaded
  * and the site falls back to the simple counter.
  */
-export const GOATCOUNTER_CODE = ''
+export const GOATCOUNTER_CODE = 'moahmmed'
 
 export const goatcounterEnabled = GOATCOUNTER_CODE.length > 0
 
