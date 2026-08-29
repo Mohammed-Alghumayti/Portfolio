@@ -41,7 +41,7 @@ export const experience: Experience[] = [
     role: 'Cyber Defense Engineer',
     company: 'Confidential Government Entity',
     period: 'Sep 2025 — Present',
-    location: 'On-site',
+    location: 'Riyadh, Saudi Arabia',
     description:
       'Cyber Defense Center specialist. Continuously monitor systems and networks using specialized tooling such as SIEM and EDR to analyze event logs, detect suspicious activity and identify potential threats.',
     skills: ['SIEM', 'EDR', 'Threat Detection', 'Security Monitoring'],
@@ -51,7 +51,7 @@ export const experience: Experience[] = [
     role: 'Cybersecurity Trainee',
     company: 'Confidential Government Entity',
     period: 'Jun 2025 — Sep 2025',
-    location: 'On-site',
+    location: 'Riyadh, Saudi Arabia',
     description:
       'Trained across security operations, incident response and cyber defense workflows ahead of moving into the Cyber Defense Engineer role.',
     skills: ['Incident Response', 'Security Operations'],
@@ -293,7 +293,7 @@ export const education: Education[] = [
     qualification: 'BSc Information Technology (Networks & Databases)',
     institution: 'King Abdulaziz University — FCIT',
     period: 'Graduated Dec 2022',
-    detail: 'Faculty of Computing and Information Technology. GPA 4.39.',
+    detail: 'Faculty of Computing and Information Technology.',
   },
   {
     qualification: 'DevOps Engineering Program',
