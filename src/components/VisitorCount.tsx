@@ -36,6 +36,10 @@ function extractCount(payload: unknown): number | null {
 }
 
 export default function VisitorCount() {
+  // Fixed for the lifetime of the component so re-renders reuse one image
+  // request, but different on every page load so the figure is never stale.
+  const [cacheBuster] = useState(() => Date.now())
+
   // Derived rather than set in the effect: with no endpoint configured there is
   // nothing to load, so the initial state is already the final one.
   const [state, setState] = useState<State>(
@@ -47,7 +51,10 @@ export default function VisitorCount() {
 
     const controller = new AbortController()
 
-    fetch(GOATCOUNTER_COUNT_URL, { signal: controller.signal })
+    // no-store, and a cache-busting parameter on the image below: a counter
+    // that is served from the browser cache shows a figure frozen at whenever
+    // it was first fetched.
+    fetch(GOATCOUNTER_COUNT_URL, { signal: controller.signal, cache: 'no-store' })
       .then((response) => (response.ok ? response.json() : Promise.reject(response.status)))
       .then((payload) => {
         const value = extractCount(payload)
@@ -86,7 +93,7 @@ export default function VisitorCount() {
 
       {state.status === 'image' && GOATCOUNTER_COUNT_IMAGE ? (
         <img
-          src={GOATCOUNTER_COUNT_IMAGE}
+          src={`${GOATCOUNTER_COUNT_IMAGE}?t=${cacheBuster}`}
           alt="Number of visitors to this portfolio"
           className="h-5"
           onError={() => setState({ status: 'hidden' })}
