@@ -9,6 +9,8 @@ export const profile = {
   headline:
     'DevOps Engineer · Cybersecurity Specialist · Software Engineer · Database Development',
   location: 'Riyadh, Saudi Arabia',
+  /** Text of the status pill above the name. Set to '' to hide the pill. */
+  availability: 'Open to networking',
   email: 'm7md3id.10@gmail.com',
   phone: '+966 53 023 5130',
   linkedin: 'https://www.linkedin.com/in/mohammedalghumayti/',

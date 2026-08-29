@@ -8,10 +8,12 @@ export default function Hero() {
     <div id="top" className="mx-auto max-w-5xl px-5 pt-10 pb-14 sm:px-6 sm:pt-24 sm:pb-24">
       <div className="grid items-center gap-8 sm:gap-12 md:grid-cols-[1fr_auto]">
         <div>
-          <p className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 font-mono text-xs font-medium tracking-wide text-blue-700 dark:border-sky-500/30 dark:bg-sky-500/10 dark:text-sky-400">
-            <span className="status-dot h-1.5 w-1.5 rounded-full bg-blue-600 dark:bg-sky-400" />
-            Open to opportunities
-          </p>
+          {profile.availability ? (
+            <p className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 font-mono text-xs font-medium tracking-wide text-blue-700 dark:border-sky-500/30 dark:bg-sky-500/10 dark:text-sky-400">
+              <span className="status-dot h-1.5 w-1.5 rounded-full bg-blue-600 dark:bg-sky-400" />
+              {profile.availability}
+            </p>
+          ) : null}
 
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl dark:text-white">
             {profile.name}
